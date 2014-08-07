@@ -1,0 +1,18 @@
+INC      := $(CURDIR)/include
+
+CXX      ?= g++
+
+CXXFLAGS := -Wall -fPIC -I$(INC)
+
+CXXFLAGS += `./agile-config build --root`
+
+TARGET   := ./predict
+
+FILE     := ./predict.cxx
+
+$(TARGET): $(FILE)
+	@echo "compiling $^ to $@"
+	@$(CXX) -o $@ $^ $(CXXFLAGS)
+clean:
+	@rm $(TARGET)
+
